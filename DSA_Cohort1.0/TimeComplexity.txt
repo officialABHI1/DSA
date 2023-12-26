@@ -1,0 +1,138 @@
+LectureName: Time complexity
+Date: 27th December 2023.
+Time: 9:30 p.m.
+Drafted @ Abhinav Srivastav
+
+
+Prerequisites: Analysis of Time Complexitites of Program through Big Oh! Notation!! ( Theoritical Perspective )
+----------------------------------------------------------------------------------------------------------------
+
+
+Time Complexity 
+------------------
+
+It can be defined as the total time taken by our program to perform all the tasks/Instruction it supposed to.
+
+Important Points:
+-----------------------
+
+Generally Online Judges have the limits of performing 10^8 Operations in 1 second.
+
+Operations : Instructions that have to be performed during the runtime of the program.
+----------
+
+Note: Now if 10^8 operations takes 1 second then by unity method, 1 operation takes 1/10^8 operations.
+
+Visualization of Time complexcity: 
+
+------------------------------------------
+
+Example 1.1: 
+
+int FuncExam(int a, int b) {
+
+ return a+b;  //--> 1 Operation  
+
+}
+
+Time complexity for the Above code will 1/10^8 secs. ( Only 1 operation is being performed )
+
+The time complexity for the above code can also be written as O(1) but you don't have to worry why, we will understand in the later part.
+
+
+------------------------------------------
+
+Lets Take it slighty on upper level
+
+
+------------------------------------------
+
+Example 1.2: 
+
+a>b ( Always )
+
+int FuncExam(int a, int b) {
+
+ int c = a+b;  // --> 1 operation
+ 
+ int d = a-b;  //--> 1 operation
+
+ return c/d;  //--> 1 Operation  
+
+}
+
+Time complexity for the Above code will 3/10^8 secs. ( total of 3 operation is being performed )
+
+The time complexity for the above code can also be written as O(1) but you don't have to worry why, we will understand in the later part.
+
+
+------------------------------------------
+
+Observing above two examples we can see conclude or summarize it in the following manner:
+
+return_Type  Func_Name( params ){
+
+   -------
+   K oprs
+   -------
+}
+
+The total Time complexity for the above code can be written as Tc ( K/10^8) seconds.
+
+Now we Know that we usually see that the Time complexities are written in terms of N like O(n), O(nlog(n)), How does that work? Let us see..!!
+
+------------------------------------------
+
+Example 1.3: 
+
+long int Sum( int n){
+
+ long int sum =0;  // 1 operation
+ 
+for(int i=1;i<=n;i++)
+{
+  sum += i;  // 1 Operation performed n times in loop
+}
+
+  return sum;  // 1 operation
+}
+
+Time complexity for the Above code will (N*1+1+1)/10^8  == (N+2)/10^8 seconds ( total of N+2 operation is being performed )
+
+Now we can clearly see that the the T.C of the above code is directly proportional to the N.
+
+------------------------------------------
+
+Now What's the FUSS about Big OH!! Notation :
+
+It is a one famous and widely used analysis technique to compute the T.C of the programs based on the Wrost case Scenarios ( You should be aware abt this beforehand )
+
+Now if we look at the T.C of the above code it would be:
+
+Analogy 1: 
+
+------------------------------------------
+
+1. Lets assume 1/10^8 seconds as 1 unit of time ( 1/10^8 being the smallest unit )
+
+2. Then (N+2)/10^8 becomes (N+2) units 
+
+3. As per the Big Oh Notation N+2 units of time can also be written as O(N+2) ~ O(N) meaning approxmiately we will utilizing units of time close to N.
+
+4. So 1/10^8 = 1 unit and as per Big oh Notation, T.C would be O(1).
+
+------------------------------------------
+
+Analogy 2:
+
+We can try to look it in the perspective of Wrost no of Operations that would performed by your program.
+
+1. Observe the wrost no of Operation that would be performed in Ex 1.1 would be 1 only hence T.C = O(1) as Big Oh! Notation.
+
+2. In case of Ex 1.3 we know that the wrost no of ops that would be performed by our code is n+2. hence T.C = O(N+2) ~ O(N) . 
+
+
+Note : In case of Big OH!! notation, if the T.C complexity of any program can be written as the polynamial equation of N. then T.C is approximated being close to term wiht the highest degree in the equation and in case of 0 degree polynomial. select the Highest constant factor.
+
+
+

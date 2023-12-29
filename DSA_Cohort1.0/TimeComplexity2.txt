@@ -1,0 +1,188 @@
+
+LectureName: Time complexity-2
+Date: 29th December 2023.
+Time: 9:30 p.m.
+Drafted @ Abhinav Srivastav
+
+Example 1.4: 
+
+long int Sum( int n){
+
+ long int sum =0;  // 1 operation
+ 
+for(int i=1;i<=5*n+17;i++)
+{
+  sum += i;  // 1 Operation performed 5*n+17+2 times in loop
+}
+
+  return sum;  // 1 operation
+}
+
+Time complexity for the Above code will (5*N+19)/10^8  == (5*N)/10^8 seconds ~ O(N) only as per Big Oh!! Notations.
+
+
+------------------------------------------
+
+
+------------------------------------------
+
+Generalization:
+------------------
+
+long int Sum( int n){
+
+ long int sum =0;  // 1 operation
+ 
+for(int i=1;i<=a*n+b;i++)
+{
+  sum += i;  // 1 Operation performed a*n+b times in loop
+}
+
+  return sum;  // 1 operation
+}
+
+Time complexity for the Above code will (a*N+b)/10^8  ==  O(an+b) ~ O(N) ifff( a<=9 && b <n || solution(a,b) of eq  an+b<N^2.
+
+------------------------------------------
+
+** Nested Loops ** 
+
+------------------------------------------
+Example 1.5: 
+
+void print loop( int n){
+
+ 
+ for(int i=1;i<=N;i++) // Loop will run N times
+ {
+  for(int j=1;j<=M;j++) // In each case the inner loop will M times
+  {
+    cout<<j;
+  }
+  cout<<endl;
+ }
+
+}
+
+We can clearly see for each i the inner loop is running M times and i is running upto N times.
+
+T.C  = worst T.C( LOOP 1) * T.C( Loop 2 )  ==>  O(N)*O(M) ==> o(N*M) 
+
+Note: In case of Nested loops if i & j are not directly dependent upon each other then in that case the Time complexity of the overall loop  = TC(L1) * TC(L2), but this wont be everytime.
+
+------------------------------------------
+
+
+------------------------------------------
+
+Example 1.6: 
+
+void print loop( int n){
+
+ 
+ for(int i=1;i<=N;i++) // Loop will run N times
+ {
+  for(int j=i;j<=N;j++) // In each case the inner loop will i times which in worst case will run N times when i= 1
+  {
+    cout<<j;
+  }
+  cout<<endl;
+ }
+
+}
+
+Now in this case we can clearly see that the i are j are not independent in this case TC(L1) * TC(L2) but irrespective of this fact, the formula Worst T.C(L1) * Worst T.C(L2)
+
+Hence we know the the Worst T.C for loop 1 is O(n) as it running n times and the Worst case for lOOP 2 is also n times when i =1 hence,
+
+total T.C = O(N)* O(N) = O(N^2).
+
+
+Note that when we try to visualize this Loop it does directly becomes clear that the time complexity would be O(N^2) like for ex if we take N =5
+
+the loop will for total 5+4+3+2+1 = Sum of 1 to 5 which we can calculate with formula (N*(N+1))/2 .
+
+So the loop is running for (N*(N+1))/2, if we consider Big oh Notation = O((N*N+1)/2) = O(N^2/2+N/2) ~ O(N^2/2) ~ O(N^2) clear!! right 
+
+Wrong XXXX
+
+Becuase if you actually numbers as input as see like for N= 5
+
+It is running for 15 times( 1+2+3+4+5) but 15 != 5^2.
+
+Since we are think about the time complexity in context of worst case scenarios which is why as N starts bigger and bigger the number of times loop is going to run start reaching
+closer and closer to O(N^2)
+
+For Ex: N= 10000 = 10^4 , total no of loop will run  = 10^4*(10^4+1)/2 ~ 5*10^3*10^4 ~ 5*10^7 which is very very close to 10^8 == (10^4)^2.
+
+I hope that makes it crystal clear.
+
+Rememeber always think abt the formula:
+
+ ------------------------------------------
+|T.C  = Worst T.C of (L1) * Worst T.C (L2) |
+ ------------------------------------------
+
+------------------------------------------
+
+------------------------------------------
+
+Example 1.7: 
+
+void print loop( int n){
+
+ 
+ for(int i=1;i<=N;i++) // Loop will run N times
+ {
+  for(int j=i;j<=N;j+= i) // In the worst case for i =1 , j+=i = j++ which mean it will run for whole N times = O(N)
+  {
+    cout<<j;
+  }
+  cout<<endl;
+ }
+
+}
+
+Now in this case we can clearly see that the i are j are not independent in but we have our weapon below:
+
+ ------------------------------------------
+|T.C  = Worst T.C of (L1) * Worst T.C (L2)|
+ ------------------------------------------
+
+Now since no of inner will keep of decreasing due to increase in the increment of j in each iteration however as we can for i= 1, j+=i = j = j+1 which 
+will make the inner loop run atmost N times hence,
+
+TC = Worst TC(L1) * Worst TC(L2) = O(N)*O(N) = O(N^2)
+
+------------------------------------------
+
+
+------------------------------------------
+
+Pattern 2: 
+
+for(int i =1;i<=n;i = i*k)
+{
+   ....O(1) operation....
+}
+
+
+Since in each Jump we are taking trying to reach N by some P amount of jumps and size of each jump = k^y: y =1,2,3....;
+
+Now in these case the Time complexity is always equal to basically the maximum no of jumps that loops would be taking
+
+ ---------------------------------------------
+|Target  = Size of each jump ^ Number of jumps|
+ ---------------------------------------------
+
+ -------------------------------------------------------
+|Number of Jumps = log(base =size of each jump)(Target) |
+ -------------------------------------------------------
+
+Now in the above pattern K^x = N = = x(No of Jumps) = Log(base k)(N). 
+
+------------------------------------------
+
+Questions................................. Keep it coming!!!!!
+
+ALL THE BEST !!!!

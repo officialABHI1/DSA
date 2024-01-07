@@ -1,0 +1,282 @@
+import java.util.*;
+
+public class Main{
+
+public static void main(String args[]){
+
+
+Scanner sc = new Scanner(System.in);
+
+String ques = "abc";
+
+subsequence(ques," ");
+
+
+
+}
+
+public static void subsequence(String ques, String ans){
+
+
+if(ques.length()==0){
+  System.out.println(ans);
+  return;
+}
+
+char ch = ques.charAt(0);
+
+subsequence(ques.substring(1),ans);
+subsequence(ques.substring(1), ans+ch);
+
+
+
+}
+
+public static int countSubsequence(String ques, String ans){
+   
+    
+    if(ques.length()==0){
+      //System.out.println(ans);
+      return 1;
+    }
+    
+    char ch = ques.charAt(0);
+    
+    int a = countSubsequence(ques.substring(1),ans);
+    int b = countSubsequence(ques.substring(1), ans+ch);
+    
+    return a+b;
+ }
+}
+
+
+---------------------------------------------------------------------------------
+import java.util.*;
+
+public class Main{
+  
+  public static void main(String args[]){
+    
+    Scanner sc = new Scanner(System.in);
+    
+   // String ques = "abc";
+   
+   int n = 3;
+    
+    subsequence(n,"");
+    
+  }
+  
+  public static void subsequence(int n, String ans){
+    
+    if(ans.length()>=n){
+      System.out.println(ans);
+      return;
+    }
+    
+    char ch1 = 'H';
+    char ch2 = 'T';
+    
+    //System.out.println(ans+ch1);
+    //System.out.println(ans+ch2);
+    
+    subsequence(n,ans+ch1);
+    subsequence(n,ans+ch2);
+    
+  }
+
+  public static int countOutcomes(int n, String ans){
+    
+    if(ans.length()>=n){
+      System.out.print(ans+" ");
+      return 1;
+    }
+    
+    char ch1 = 'H';
+    char ch2 = 'T';
+    
+    //System.out.println(ans+ch1);
+    //System.out.println(ans+ch2);
+    
+    int a =countOutcomes(n,ans+ch1);
+    int b =countOutcomes(n,ans+ch2);
+    
+    return a+b;
+    
+  }
+}
+
+---------------------------------------------------------------------------------
+// avoiding 2 consecutive h
+import java.util.*;
+
+public class Main{
+  
+  public static void main(String args[]){
+    
+    Scanner sc = new Scanner(System.in);
+    
+   // String ques = "abc";
+   
+   int n = 4;
+    
+    subsequence(n,"");
+    
+  }
+  
+  public static void subsequence(int n, String ans){
+    
+    if(ans.length()>=n){
+      int flag =0;
+      for(int i=0;i<ans.length()-1;i++){
+        if(ans.charAt(i)=='H' && ans.charAt(i+1)=='H'){
+          flag++;
+        }
+      }
+      
+      if(flag==0){
+        System.out.println(ans);
+      }
+      return;
+    }
+    
+    char ch1 = 'H';
+    char ch2 = 'T';
+    
+    //System.out.println(ans+ch1);
+    //System.out.println(ans+ch2);
+    
+    subsequence(n,ans+ch1);
+    subsequence(n,ans+ch2);
+    
+  }
+}
+
+---------------------------------------------------------------------------------
+More optimized verison: 
+
+import java.util.*;
+
+public class Main{
+  
+  public static void main(String args[]){
+    
+    Scanner sc = new Scanner(System.in);
+    
+   // String ques = "abc";
+   
+   int n = 4;
+    
+    subsequence(n,"");
+    
+  }
+  
+  public static void subsequence(int n, String ans){
+    
+    if(ans.length()>=n){
+      System.out.println(ans);
+      return;
+    }
+    
+    char ch1 = 'H';
+    char ch2 = 'T';
+    
+    //System.out.println(ans+ch1);
+    //System.out.println(ans+ch2);
+    
+     if (ans.length() > 0 && ans.charAt(ans.length() - 1) == 'H') {
+            subsequence(n, ans + ch2);
+        } else {
+            subsequence(n, ans + ch1);
+        }
+      subsequence(n, ans + ch2);
+     
+  }
+}
+
+---------------------------------------------------------------------------------
+// it's printing duplicate paths (incorrect )
+
+import java.util.*;
+
+public class Main{
+  
+  public static void main(String args[]){
+    
+    Scanner sc = new Scanner(System.in);
+    
+   // String ques = "abc";
+   
+   int n = 4;
+   
+   subsequence(n,"");
+    
+  }
+  
+  public static void subsequence(int n, String ans){
+    
+    //int count
+    if(ans.length()>n){
+      return;
+    }
+    
+    if(ans.length()<=n){
+      
+      int sum =0;
+      
+      for(int i=0;i<ans.length();i++){
+        sum += Character.getNumericValue(ans.charAt(i));
+      }
+       // System.out.println(sum);
+       
+       if(sum==n){
+         System.out.println(ans);
+       }
+       
+      // return;
+    }
+    
+    char ch1 = '1';
+    char ch2 = '2';
+    char ch3 = '3';
+    
+     
+      subsequence(n, ans + ch2);
+      subsequence(n, ans + ch1);
+      subsequence(n, ans + ch2);
+     
+  }
+}
+
+
+---------------------------------------------------------------------------------
+// correct version 
+
+import java.util.*;
+
+public class Main{
+  
+  public static void main(String args[]){
+    
+    Scanner sc = new Scanner(System.in);
+    
+   // String ques = "abc";
+   
+   int n = 4;
+   
+   printPaths(n,0,"");
+    
+  }
+  
+  public static void printPaths(int n, int curr, String ans){
+    
+    if(curr >=n){
+      System.out.println(ans);
+      return;
+    }
+    
+    for(int dice=1;dice<=3;dice++){
+      printPaths(n,curr+dice,ans+dice);
+    }
+  }
+}
